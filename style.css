@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: linear-gradient(300deg, #CED1D6, #bfc0c0);
+    font-family: monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+input {
+    background-color: #fff;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-family: inherit;
+    padding: 1rem;
+    min-width: 300px;
+}
+input:focus {
+    outline: none;
+}
+.weather {
+    text-align: center;
+    font-size: 2rem;
+}
+h2 {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+small {
+    position: relative;
+    top: -2rem;
+}
