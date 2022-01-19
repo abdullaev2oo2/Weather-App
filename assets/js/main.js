@@ -20,7 +20,7 @@ const date = new Date;
 const today = date.getDay();
 
 if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, errorFunction);
+    navigator.geolocation.getCurrentPosition(showPosition);
 }
 function showPosition(position) {
     let lat = position.coords.latitude;
@@ -37,9 +37,6 @@ function showPosition(position) {
     form.classList.add('hidden');
     locationBtn.classList.remove('hidden');
 
-}
- function errorFunction() {
-    alert('Your device has declined GPA location, please write city name in order to get information')
 }
 
 async function getWeatherByLocation(city) {
