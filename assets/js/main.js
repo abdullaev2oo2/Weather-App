@@ -10,7 +10,14 @@ const url2 = (lat, lon) =>
 const main = document.getElementById('main');
 const form = document.getElementById('form');
 const search = document.getElementById('search');
-const locationBtn = document.getElementById('changeLocation');
+
+let locationBtn = document.createElement('button');
+locationBtn.innerText = 'Change location';
+locationBtn.classList.add('location-btn');
+
+
+const date = new Date;
+const today = date.getDay();
 
 if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, errorFunction);
@@ -20,25 +27,27 @@ function showPosition(position) {
     let lon = position.coords.longitude;
 
     getWeatherByGeoLocation(lat, lon);
-
-    async function getWeatherByGeoLocation(lat, lon) {
-        const resp = await fetch(url2(lat, lon), {origin: 'cors'});
-        const respData = await resp.json();
-        console.log(respData);
-        addWeatherToPage(respData);
-    }
+        async function getWeatherByGeoLocation(lat, lon) {
+            const resp = await fetch(url2(lat, lon), {origin: 'cors'});
+            const respData = await resp.json();
+            console.log(respData);
+            addWeatherToPage(respData);
+}
     
     form.classList.add('hidden');
     locationBtn.classList.remove('hidden');
 
 }
  function errorFunction() {
-     async function getWeatherByLocation(city) {
-         const resp = await fetch(url1(city), {origin: 'cors'});
-         const respData = await resp.json();
-         console.log(respData);
-         addWeatherToPage(respData);
-     }
+    alert('Your device has declined GPA location, please write city name in order to get information')
+}
+
+async function getWeatherByLocation(city) {
+    const resp = await fetch(url1(city), {origin: 'cors'});
+    const respData = await resp.json();
+    
+    console.log(respData);
+    addWeatherToPage(respData);
 }
 
 function addWeatherToPage(data) {
@@ -46,13 +55,18 @@ function addWeatherToPage(data) {
 
     const weather = document.createElement('div');
     weather.classList.add('weather');
+    weather.classList.toggle(data.list[0].weather[0].main);
 
     weather.innerHTML = `
-        <div class="filter"></div>
         <p>${data.city.name}</p>
-        <h2><img src="https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png"/> 
-        ${temp}° <img src="https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png"/></h2>
-        <small>${data.list[0].weather[0].main}</small>
+        <h5>Currently</h5>
+        <div class="weather-inf">
+        <h2>${temp}°</h2>
+            <div>
+                <p>${data.list[0].weather[0].main}</p>
+                <p>Feels like ${KtoC(data.list[0].main.feels_like)}</p>
+            </div>
+        </div>
     `;
     main.innerHTML = ``;
     main.appendChild(weather);
@@ -74,15 +88,12 @@ function addWeatherToPage(data) {
         `;
         weather5days.appendChild(weatherDay);
     }
+    main.appendChild(locationBtn)
 }
 
 function KtoC(K) {
     return Math.floor(K - 273.15);
 }
-
-
-const date = new Date;
-const today = date.getDay();
 
 
 function findingDays(day) {
@@ -99,16 +110,13 @@ locationBtn.classList.add('hidden');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     
-
-    const city = search.value;
     locationBtn.classList.remove('hidden');
+    const city = search.value;
+    search.value = '';
     
     if(city) {
         getWeatherByLocation(city);
-    }
-    if(!form.classList.contains('hidden')) {
-        form.classList.add('hidden');
-    }
+    } 
 })
 
 locationBtn.addEventListener('click', () => {
