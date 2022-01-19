@@ -20,7 +20,7 @@ const date = new Date;
 const today = date.getDay();
 
 if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(showPosition, errorFunction);
 }
 function showPosition(position) {
     let lat = position.coords.latitude;
@@ -32,6 +32,9 @@ function showPosition(position) {
             const respData = await resp.json();
             console.log(respData);
             addWeatherToPage(respData);
+}
+function errorFunction() {
+    alert("Seems, your GPS is not enabled. Please, turn it on and try again!")
 }
     
     form.classList.add('hidden');
