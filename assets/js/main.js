@@ -33,13 +33,13 @@ function showPosition(position) {
             console.log(respData);
             addWeatherToPage(respData);
 }
-function errorFunction() {
-    alert("Seems, your GPS is not enabled. Please, turn it on and try again!")
-}
     
     form.classList.add('hidden');
     locationBtn.classList.remove('hidden');
 
+}
+ function errorFunction() {
+    alert('Your device has declined GPA location, please write city name in order to get information')
 }
 
 async function getWeatherByLocation(city) {
