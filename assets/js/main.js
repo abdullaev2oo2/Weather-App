@@ -39,7 +39,7 @@ function showPosition(position) {
 
 }
  function errorFunction() {
-    alert('Your device has declined GPA location, please write city name in order to get information')
+    alert('Seems, your GPS is disabled. Please, turn it on and refresh the page or you may manually search your city')
 }
 
 async function getWeatherByLocation(city) {
