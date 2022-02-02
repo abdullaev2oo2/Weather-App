@@ -17,6 +17,11 @@ body {
     width: 100%;
     margin: 0 auto;
 }
+#main {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
 #form {
     position: fixed;
     top: 10%;
@@ -36,13 +41,11 @@ input:focus {
 .weather {
     height: 300px;
     font-size: 2rem;
-    background-size: cover;
-    background-repeat: no-repeat;
     position: relative;
     color: #fff;
     font-weight: bold;
-    background: url(../img/sunny.jpg);
     padding: 0 1rem;
+    height: 45vh;
     
 }
 .weather h5 {
@@ -58,7 +61,8 @@ input:focus {
 }
 .weather p {
     font-size: 1.1rem;
-    display: inline-block;  
+    display: inline-block;
+    background-position: center;
 }
 .weather-inf {
     display: flex;
@@ -86,7 +90,7 @@ input:focus {
     justify-content: space-between;
     align-items: center;
     font-size: 1.3rem;
-    height: 4rem;
+    height: 8.7vh;
     font-weight: bold;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
@@ -104,7 +108,7 @@ input:focus {
 }
 .location-btn {
     width: 100%;
-    height: 4.5rem;
+    height: 10vh;
     font-size: 1.3rem;
     background-color:rgba(37, 0, 250, 0.877);
     color: #fff;
@@ -114,16 +118,26 @@ input:focus {
 }
 .Clear {
     background: url(../img/clear.jpg);
+     background-repeat: no-repeat;
+    background-size: cover; 
 }
 .Clouds {
     background: url(../img/cloudy.jpg);
+     background-repeat: no-repeat;
+    background-size: cover; 
 }
 .Snow {
     background: url(../img/snow.jpg);
+     background-repeat: no-repeat;
+    background-size: cover; 
 }
 .rain {
     background: url(../img/rainy.jpg);
+     background-repeat: no-repeat;
+    background-size: cover; 
 }
 .sunny {
     background: url(../img/sunny.jpg);
+     background-repeat: no-repeat;
+    background-size: cover; 
 }
